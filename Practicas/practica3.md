@@ -1,12 +1,12 @@
 # Conceptos 2019
 ## Práctica 3
 
-####Ejercicio 1
+#### Ejercicio 1
 > ¿Qué define la semántica?
 
 La _semántica_ describe el significado de los símbolos, palabras y frases de un lenguaje ya sea lenguaje natural o lenguaje informático.
 
-####Ejercicio 2
+#### Ejercicio 2
 > a.¿Qué significa compilar un programa?
 
 La compilación de un programa es la `traducción` del código fuente al lenguaje _"máquina"_ que puede ser interpretado (y ejecutado) por el procesador.
@@ -35,7 +35,7 @@ En el análisis semántico (semántica estática) se realizan pasos importantes 
 - Se hacen las comprobaciones de nombres. Ej.: toda variable debe estar declarada.
 - Es el nexo entre el análisis y la síntesis.
 
-####Ejercicio 3:
+#### Ejercicio 3:
 >Con respecto al punto anterior ¿es lo mismo compilar un programa que interpretarlo?
 >Justifique su respuesta mostrando las diferencias básicas, ventajas y desventajas de cada uno.
 
@@ -54,7 +54,7 @@ NO es lo mismo _compilar e interpretar_ un programa.
 | Más rápido en el desarrollo. Se pueden probar sentencias sin compilar el programa entero.           | Necesario compilar todo el programa para probar una sentencia.      |
 
 
-####Ejercicio 4
+#### Ejercicio 4
 >Explique claramente la diferencia entre un error sintáctico y uno semántico. Ejemplifique cada caso.
 
 - Sintáxis: Conjunto de _reglas_ que definen como componer letras, dígitos y otros caracteres para formar los programas.
@@ -73,7 +73,7 @@ int main(){
    return e     //Sintáctico. Se espera ';' 
 }
 ```
-####Ejercicio 5
+#### Ejercicio 5
 >Sean los siguientes ejemplos de programas. Analice y diga qué tipo de error se produce (Semántico o Sintáctico) y en qué momento se detectan dichos errores (Compilación o Ejecución).
 >_Aclaración: Los valores de la ayuda pueden ser mayores._
 
