@@ -94,3 +94,62 @@ _Ayuda: Sintáctico 2, Semántico 3_
 2. Semántico. i no está declarado
 3. Semántico y sintáctico. Intenta sumar +1 a un char. El símbolo de asignación en Pascal es :=
 4. Sintáctico. Se espera ; en lugar de .
+__Todos estos errores saltan en tiempo de compilación__
+
+b. Java
+```Java
+public String tabla(int numero, arrayList<Boolean> listado)
+{
+    String result = null;
+    for(i = 1; i < 11; i--) { // 1
+        result += numero + "x" + i + "=" + (i*numero) + "\n"; //2
+        listado.get(listado.size()-1)=(BOOLEAN)numero>i; //3
+    }
+    return true; //4
+}
+```
+_Ayuda: Sintácticos 4, Semánticos 3, Lógico 1_
+1. Errores varios
+1.1. Error lógico: el for nunca termina.
+1.2. Error semántico: i no está declarado.
+
+2. Errores varios
+2.1 Error semántico: result es null. No puede asignarse +=.
+2.2 Error semántico: número es un int. Se intenta concatenar como si fuera String.
+2.3
+3. Errores varios
+3.1 Error semántico: Se intenta asignar un valor al retorno de una función
+3.2 Error sintáctico: BOOLEAN no existe.
+4. Error semántico: Retorna un true cuando la función espera devolver un String
+
+Todos los errores se detectan en tiempo de compilación excepto el error lógico 1.1 que será en tiempo de ejecución.
+
+c. C
+```C
+c)​ C
+# include <stdio.h>
+int suma; /* Esta es una variable global */
+int main()
+{
+    int indice;
+    encabezado;                                 //1
+    for (indice = 1 ; indice <= 7 ; indice ++)
+        cuadrado (indice);
+    final(); Llama a la función final */        //2
+    return 0;
+}
+
+cuadrado (numero)                               // 3
+int numero;
+{   int numero_cuadrado;
+    numero_cuadrado == numero * numero;
+    suma += numero_cuadrado;
+    printf("El cuadrado de %d es %d\n",
+    numero, numero_cuadrado);
+}
+```
+_Ayuda: Sintácticos 2, semánticos 6_
+
+1. Error sintáctico. "Encabezado no está definido".
+2. Error sintáctico. "Se encuentra */ para cerrar comentarios pero no está abierto. final() no existe"
+3. Error sintáctico. Luego de declarar el encabezado de una función se espera "{"
