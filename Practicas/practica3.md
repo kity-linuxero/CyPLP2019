@@ -7,19 +7,22 @@
 La _semántica_ describe el significado de los símbolos, palabras y frases de un lenguaje ya sea lenguaje natural o lenguaje informático.
 
 #### Ejercicio 2
-> a.¿Qué significa compilar un programa?
+> a. ¿Qué significa compilar un programa?
 
 La compilación de un programa es la `traducción` del código fuente al lenguaje _"máquina"_ que puede ser interpretado (y ejecutado) por el procesador.
 Por lo general, el programa suele ser lenguaje objetivo .o, aunque a veces puede ser a un lenguaje intermedio `bytecode`, como en el caso de Java.
+```    
     Lenguaje Fuente -----> Lenguaje Objeto
-                      ↑Compilación
-
+                      ^
+                  Compilación
+```
 >b. Describa brevemente cada uno de los pasos necesarios para compilar un programa.
 
 - Análisis:
-    - Análisis léxico (Scanner): Ha
+    - Análisis léxico (Scanner)
     - Análisis sintáctico (Parser)
     - Análisis semántico (Semántica estática)
+
 `Generación de código intermedio`
 - Síntesis
     - Optimización del código
@@ -37,7 +40,7 @@ En el análisis semántico (semántica estática) se realizan pasos importantes 
 
 #### Ejercicio 3:
 >Con respecto al punto anterior ¿es lo mismo compilar un programa que interpretarlo?
->Justifique su respuesta mostrando las diferencias básicas, ventajas y desventajas de cada uno.
+Justifique su respuesta mostrando las diferencias básicas, ventajas y desventajas de cada uno.
 
 Tanto la compilación como la interpretación son formas de interpretación de código fuente a código máquina.
 
@@ -126,7 +129,6 @@ Todos los errores se detectan en tiempo de compilación excepto el error lógico
 
 c. C
 ```C
-c)​ C
 # include <stdio.h>
 int suma; /* Esta es una variable global */
 int main()
@@ -142,14 +144,90 @@ int main()
 cuadrado (numero)                               // 3
 int numero;
 {   int numero_cuadrado;
-    numero_cuadrado == numero * numero;
-    suma += numero_cuadrado;
-    printf("El cuadrado de %d es %d\n",
-    numero, numero_cuadrado);
-}
+    numero_cuadrado == numero * numero;         //4
+    suma += numero_cuadrado;                    //5
+    printf("El cuadrado de %d es %d\n", numero, numero_cuadrado);
+}                                               //6
 ```
 _Ayuda: Sintácticos 2, semánticos 6_
 
-1. Error sintáctico. "Encabezado no está definido".
-2. Error sintáctico. "Se encuentra */ para cerrar comentarios pero no está abierto. final() no existe"
+1. Error semántico. "Encabezado no está definido".
+2. Errores sintáctico y semántico:
+    2.1. Error sintáctico. Se encuentra */ para cerrar comentarios pero no está abierto.
+    2.2. Error semántico. final() no existe
 3. Error sintáctico. Luego de declarar el encabezado de una función se espera "{"
+4. Error semántico. Se hace una comparación que retorna un bool que nunca es usado.
+5. Errores semánticos:
+    5.1. numero_cuadrado no está inicializado.
+    5.2. suma se usa sin estar inicializada.
+6. Error semántico. En C una función por defecto retorna un int. Al no estar especificado, se espera que retorne un int que nunca es retornado.
+
+Todos los errores hallados se detectan en tiempo de compilación.
+
+---------
+
+#### Ejercicio 6
+>Explique cuál es la semántica para las variables predefinidas en lenguaje Ruby __self__ y __nil__​ . ¿Qué valor toman; cómo son usadas por el lenguaje?
+
+Las variable predefinida __self__  se utiliza para referirse a un objeto como sí mismo.
+Por ejemplo el siguiente código
+```Ruby
+class Main
+  puts "Estamos en " + self.to_s
+  module Modulo
+    puts "Ahora estamos en el módulo anidado " + self.to_s
+  end
+  puts "Ahora volvemos a " + self.to_s
+end
+```
+Devolverá:
+```ruby
+ruby 2.5.0p0 (2017-12-25 revision 61468) [x86_64-linux]
+Estamos en Main
+Ahora estamos en el módulo anidado Main::Modulo
+Ahora volvemos a Main
+```
+
+La variable predefinida __nil__ es utilizada para indicar un valor nulo. Como en Ruby todo es un objeto, incluso __el valor nil__, perteneciente a la clase NilClass.
+
+```ruby
+> 5.nil?
+=> false
+```
+```ruby
+> nil.class
+=> NilClass
+```
+
+
+------
+
+
+#### Ejercicio 9
+>Defina el concepto de ligadura y su importancia respecto de la semántica de un programa. ¿Qué diferencias hay entre ligadura estática y dinámica? Cite ejemplos (proponer casos sencillos)
+
+#### Ligadura (binding)
+- Los programas trabajan con _entidades_.
+- Las entidades tienen _atributos_.
+- Los atributos tienen que establecerse antes de poder usar la entidad.
+__Ligadura:__ es la `asociación entre la entidad y el atributo`.
+
+| __Entidad__ | __Atributo__                                        |
+|-------------|-----------------------------------------------------|
+| Variable    | Nombre, tipo, área de memoria, etc                  |
+| Rutina      | nombre, parámetros formales, parámetros reales, etc |
+| Sentencia   | Acción asociada                                     |
+
+Entre los lenguajes puede variar el _momento de la ligadura_ (binding time).
+
+Una ligadura es __estática__ si se establece antes de la ejecución y NO se puede cambiar.
+
+Una ligadura es __dinámica__ si se establece en el momento de ejecución y puede cambiarse de acuerdo de alguna regla específica del lenguaje. _Excepción: constantes._
+
+En lenguaje C se liga el tipo a la variable _en compilación._ Por lo tanto es un tipo de ligadura estática. La variable no podrá cambiar su tipo en tiempo de ejecución.
+
+
+-----------
+#### Dudas:
+- ¿Están bien definidas las diferencias entre errores semánticos y estáticos?
+- 
